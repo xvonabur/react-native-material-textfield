@@ -10,6 +10,7 @@ export default class Label extends PureComponent {
     focused: false,
     errored: false,
     restricted: false,
+    slidingOff: false,
   };
 
   static propTypes = {
@@ -17,6 +18,7 @@ export default class Label extends PureComponent {
     focused: PropTypes.bool,
     errored: PropTypes.bool,
     restricted: PropTypes.bool,
+    slidingOff: PropTypes.bool,
 
     baseSize: PropTypes.number.isRequired,
     fontSize: PropTypes.number.isRequired,
@@ -92,6 +94,7 @@ export default class Label extends PureComponent {
       active, 
       focused,
       animationDuration,
+      slidingOff,
       ...props
     } = this.props;
 
@@ -102,7 +105,7 @@ export default class Label extends PureComponent {
         outputRange: [errorColor, baseColor, tintColor],
       });
 
-    let top = input.interpolate({
+    let top = slidingOff ? baseSize - basePadding - activeFontSize : input.interpolate({
       inputRange: [0, 1],
       outputRange: [
         baseSize + fontSize * 0.25,
@@ -111,7 +114,7 @@ export default class Label extends PureComponent {
     });
 
     let textStyle = {
-      fontSize: input.interpolate({
+      fontSize: slidingOff ? activeFontSize : input.interpolate({
         inputRange: [0, 1],
         outputRange: [fontSize, activeFontSize],
       }),

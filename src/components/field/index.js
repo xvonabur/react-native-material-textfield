@@ -49,6 +49,7 @@ export default class TextField extends PureComponent {
     disabled: false,
     disabledLineType: 'dotted',
     disabledLineWidth: 1,
+    labelSlidingOff: false
   };
 
   static propTypes = {
@@ -93,6 +94,8 @@ export default class TextField extends PureComponent {
 
     containerStyle: (ViewPropTypes || View.propTypes).style,
     inputContainerStyle: (ViewPropTypes || View.propTypes).style,
+
+    labelSlidingOff: PropTypes.bool,
   };
 
   constructor(props) {
@@ -352,6 +355,7 @@ export default class TextField extends PureComponent {
       containerStyle,
       inputContainerStyle: inputContainerStyleOverrides,
       clearTextOnFocus,
+      labelSlidingOff,
       ...props
     } = this.props;
 
@@ -494,6 +498,7 @@ export default class TextField extends PureComponent {
       focused,
       errored,
       restricted,
+      slidingOff: labelSlidingOff,
       style: labelTextStyle,
     };
 
