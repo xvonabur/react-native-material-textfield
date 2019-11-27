@@ -500,12 +500,13 @@ export default class TextField extends PureComponent {
       fontSize,
       labelFontSize,
       labelTextStyle,
+      labelSlidingOff
     } = this.props;
 
     return (
       <Label
         {...props}
-        fontSize={fontSize}
+        fontSize={labelSlidingOff ? labelFontSize : fontSize}
         activeFontSize={labelFontSize}
         offset={offset}
         label={label}
